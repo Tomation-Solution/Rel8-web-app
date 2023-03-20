@@ -8,7 +8,7 @@ import NextNProgress from 'nextjs-progressbar';
 
 function MyApp({ Component, pageProps }) {
   return <Provider store={store}>
-    <NextNProgress color={'#2e3715'} />
+    <NextNProgress color={'#075a94'} />
     <ToastContainer />
 
     <Component {...pageProps} />

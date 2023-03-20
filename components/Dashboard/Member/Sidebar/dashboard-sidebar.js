@@ -17,7 +17,7 @@ import Photo from '@mui/icons-material/Photo'
 import EventRounded from '@mui/icons-material/EventRounded'
 import MenuBook from '@mui/icons-material/MenuBook'
 import ChatBubble from '@mui/icons-material/ChatBubble'
-import LogoImage from '../../../../images/logo.svg'
+import LogoImage from '../../../../images/logo.png'
 import SwitchLabels from '../../../SwitchLabels';
 import Spinner from "../../../Spinner";
 import {BsBriefcaseFill} from 'react-icons/bs'
@@ -178,13 +178,13 @@ const content = (
       // height: '100%'
     }}
   >
-    <div style={{'backgroundColor':'white','height':'80px'}}>
+    <div style={{'backgroundColor':'white',}}>
       {/* <br/> */}
       <img 
           src={LogoImage.src}
           alt='logo'
           style={{
-            'width':'100%',
+            'width':'40%',
             'margin':'0 auto',
             'display':'block',
             'height':'100%'
@@ -326,7 +326,7 @@ const content = (
         open
         PaperProps={{
           sx: {
-            backgroundColor: '#2e3715',
+            backgroundColor: '#075a94',
             color: '#FFFFFF',
             width: 220,
             borderRadius:"10px"
@@ -348,7 +348,7 @@ const content = (
       open={open}
       PaperProps={{
         sx: {
-          backgroundColor: '#2e3715',
+          backgroundColor: '#075a94',
           color: '#FFFFFF',
           width: 250
         }
