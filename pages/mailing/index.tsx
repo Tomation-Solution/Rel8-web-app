@@ -1,19 +1,20 @@
 import axios from "axios"
 import { useRouter } from "next/dist/client/router"
 import { NextPage } from "next/types"
-import { useState } from "react"
-import CustomBtn from "../../../../components/CustomBtn/Button"
-import Spinner from "../../../../components/Spinner"
-import { baseURL } from "../../../../helpers/axios"
-import useToast from "../../../../hooks/useToast"
-
+import { useEffect, useState } from "react"
+import CustomBtn from "../../components/CustomBtn/Button"
+import Spinner from "../../components/Spinner"
+import { baseURL } from "../../helpers/axios"
+import useToast from "../../hooks/useToast"
 
 
 const ActivateAccount:NextPage = ()=>{
+
+
     const route = useRouter()
     const {uidb64, token} = route.query
     const {notify} = useToast()
-    const [status,setStatus] = useState<'loading'|'error'|'okay'|'idle'>('error')
+    const [status,setStatus] = useState<'loading'|'error'|'okay'|'idle'>('idle')
     const handleRoute = (value:string)=>{
       //
       route.push(value)
@@ -34,7 +35,13 @@ const ActivateAccount:NextPage = ()=>{
         }
       }
 
-
+      useEffect(()=>{
+        const params:any = new Proxy(new URLSearchParams(window.location.search), {
+          get: (searchParams, prop:any) => searchParams.get(prop),
+        });
+        console.log(params.token)
+        console.log(params.uidb64)
+      },[])
       return (
         <div style={{'backgroundColor':'#dcdcdc2e','height':'100vh'}}>
 
