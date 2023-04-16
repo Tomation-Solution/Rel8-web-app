@@ -148,7 +148,7 @@ const Login =  () =>{
                   }}
                   >
                   {/* <Checkbox/> */}
-                  Activate Account</Typography>
+                  Register</Typography>
               </Grid>
           </Grid>
           <SubmitButton  text={status==="loading"?"Loading":'Login'} radius='10px'
