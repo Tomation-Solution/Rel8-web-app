@@ -25,13 +25,15 @@ type ProfileTypeForm  ={
     memberData:MemberType['member_info'],
     member_education:memberEducationType[],
     member_employment_history:memberEmploymentHistory[]
+    user_info:{
+        name:string,value:string,id:number|string}[]
 }
 const schema = yup.object({
-    // 'memberData':yup.array().of(yup.object({
-    //     'id':yup.number(),
-    //     'name':yup.string(),
-    //     'value':yup.string(),
-    // })),
+    'user_info':yup.array().of(yup.object({
+        name:yup.string().required(),
+        value:yup.string().required(),
+        id:yup.number().required(),
+    })),
     'member_education':yup.array().of(yup.object({
         "member":yup.number(),
         "name_of_institution": yup.string(),
@@ -52,7 +54,14 @@ const schema = yup.object({
         'id':yup.number(),
     }))
 })
-const GRIDSTYLE ={'display':'grid','gridTemplateColumns':'repeat(2,1fr)','gap':'10px','alignItems':'center'}
+const GRIDSTYLE ={
+    // 'display':'grid',
+// 'gridTemplateColumns':'repeat(2,1fr)',
+'gap':'5px',
+'display':'flex',
+'flex-wrap':'wrap'
+// 'alignItems':'center'
+}
 const Profile = ({member,can_edit_img=false}:Prop):React.ReactElement=>{
     // const Name:string = FetchName(member)
     const [editProfile,setEditProfile] =useState(false)
@@ -75,26 +84,42 @@ const Profile = ({member,can_edit_img=false}:Prop):React.ReactElement=>{
     const {fields:employment_fields,append:employment_append,remove:employment_remove} =useFieldArray({
         'name':'member_employment_history',control
     })
+
+    const { fields, } =useFieldArray({
+        'name':'user_info',control
+    })
     // 
     useEffect(()=>{
         // setValue('memberData',member.member_info)
         setValue('member_education',member.member_education)
         setValue('member_employment_history',member.member_employment_history)
+        setValue("user_info",member.member_info)
     },[])
 
 
 
     const onSubmit =async (submmited:ProfileTypeForm ) =>{
         setIsLoading(true)
-        const resp =await axios.put(`/tenant/user/member-bio/${member.id}/`,{
+        Promise.all([
+          axios.put(`/tenant/user/member-bio/${member.id}/`,{
             'membereducation':submmited.member_education,
             'memberemploymenthistory':submmited.member_employment_history
+            }),
+            axios.put('/tenant/user/update-member-info/1/',{
+                'user_info':submmited.user_info
+            })
+
+        ]).then((values)=>{
+            console.log(values)
+        setIsLoading(false)
+        notify('Success','success')
+        // window.location.reload()
+
         })
-        if(resp.data.status_code ==200){
-            notify('Profile Update','success')
-            notify('Please hold on as we get the recent data','success')
-            window.location.reload()
-        }
+        // if(resp.data.status_code ==200){
+        //     notify('Profile Update','success')
+        //     notify('Please hold on as we get the recent data','success')
+        // }
     }
     const updateProfile = async (file:any)=>{
         const form = new FormData()
@@ -143,7 +168,9 @@ onChange={(e)=>{
 {
     member.member_info.length!==0?
     <>
-        <p style={{'textAlign':'left'}}><strong>Member Info</strong></p>
+        <p 
+        style={{'textAlign':'left'}}
+        ><strong>Member Info</strong></p>
         <br />
 
 
@@ -151,7 +178,7 @@ onChange={(e)=>{
             {
                 member.member_info.map((data,index)=>(
                     <div key={index}>
-                        <InputFieldView title={data.name} value={data.value}/>
+                        <InputFieldView title={data.name.replaceAll('_',' ')} value={data.value}/>
                         <br />
                     </div>
                 ))
@@ -184,13 +211,13 @@ onChange={(e)=>{
     <br />
     {/* EMPLOYMENT HISTORY */}
     {
-        member.member_education.length!==0?
+        member?.member_education?.length!==0?
         <>
             <p style={{'textAlign':'left'}}> <strong>EDUCATION{'(college or university degrees)'}</strong></p>
             <br />
             <div>
             {
-                member.member_education.map((data,index)=>(
+                member?.member_education?.map((data,index)=>(
                     <div key={index}  style={GRIDSTYLE}>
                       <InputFieldView title={'Name Of Insttution'} value={data.name_of_institution}/>
                       <InputFieldView title={'Major'} value={data.major}/>
@@ -210,7 +237,7 @@ onChange={(e)=>{
     }
     <br />
     {
-        member.member_employment_history.length!==0?
+        member.member_employment_history?.length!==0?
         <>
     <br />
 
@@ -218,7 +245,7 @@ onChange={(e)=>{
             <br />
             <div>
                     {
-                member.member_employment_history.map((data,index)=>(
+                member?.member_employment_history?.map((data,index)=>(
                     <div style={GRIDSTYLE} key={index}>
                         <InputFieldView title={'Postion Title'} value={data.postion_title}/>
                         <InputFieldView title={'Employer / Addresse'} value={data.employer_name_and_addresse}/>
@@ -240,6 +267,34 @@ onSubmit={handleSubmit(onSubmit)}
 <br />
     <br />
        <h2 style={{'textAlign':'left'}}>Education Bio</h2>
+   
+   <br />
+   <div 
+            style={{'display':'grid',
+'gridTemplateColumns':'1fr 1fr',
+            'gap':'10px','justifyContent':'space-between','alignItems':'center'}}
+            >
+{
+                fields.filter((field)=>field.name.toLowerCase() !=='chapter').map((field,index)=>(
+                    <div key={index}>
+                         <br />
+            <label htmlFor="">{field.name.replaceAll('_',' ')}</label>
+                <TextField 
+              placeholder={field.name.replaceAll('_',' ')} 
+              // label='Username'  
+              style={{width:'100%'}} size='small'
+              InputProps={{
+              
+                  startAdornment:(
+                      <Person color='disabled'  fontSize={'medium'}/>
+                  )
+              }}
+              {...register(`user_info.${index}.value`)}
+              />
+                    </div>
+                ))
+            }
+            </div>
     <br />
     {
         education_fields.map((data,index)=>(

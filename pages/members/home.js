@@ -1,4 +1,3 @@
-
 import { Grid, Typography, Button } from "@mui/material"
 import AccountBalanceWalletRounded  from "@mui/icons-material/AccountBalanceWalletRounded";
 // import Image from "next/image";
@@ -28,7 +27,7 @@ import { selectmemberPublication } from "../../redux/memberPublication/memberPub
 import { useRouter } from "next/router";
 import { selectMeetings } from "../../redux/memberMeeting/memberMeetingSlice";
 import { getMeetings, registerForMeeting } from "../../redux/memberMeeting/memberMeetingApi";
-
+import CustomCard from '../../components/CustomCard'
 
 export default function Home(props){
   const route = useRouter()
@@ -120,37 +119,28 @@ export default function Home(props){
                       }
                     </div>
               
-   <EventContainerV2>
+   <Grid   style={{'padding':'1rem 0'}} container gap={2}>
 
 {
   meetings.slice(0,3).map((data,index)=>(
-    <EventV2 key={index}>
-    <img
-      src='https://images.unsplash.com/photo-1431540015161-0bf868a2d407?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjN8fG1lZXRpbmd8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60'
-    />
-    <h4><small>{data.name}</small></h4>
-    <p>{data.details.slice(0,30)}..</p>
-    <div className="btn_container">
-      {/* <button className="main" onClick={()=>{
-        localStorage.setItem('meeting_detail',JSON.stringify(data))
-        dispatch(registerForMeeting(data.id))
-        route.push('/members/meeting_details/')
-      }}>Accept</button> */}
+    <CustomCard
+    url={data.image?data.image:'https://images.unsplash.com/photo-1431540015161-0bf868a2d407?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjN8fG1lZXRpbmd8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60https://images.unsplash.com/photo-1431540015161-0bf868a2d407?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjN8fG1lZXRpbmd8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60'}
+    title={data.name}
+    content={
+      data.details.slice(0,30)
+    }
+    viewMoreFunc={()=>{
+      localStorage.setItem('meeting_detail',JSON.stringify(data))
+      route.push('/members/meeting_details/')
+    }}
+     />
 
-      <button className="not_main" onClick={()=>{
-        localStorage.setItem('meeting_detail',JSON.stringify(data))
-        route.push('/members/meeting_details/')
-      }}>
-        View
-      </button>
-    </div>
-  </EventV2>
   ))
 }
 
 
 
-</EventContainerV2>
+</Grid >
                 <br/>
                 <div >
                   {
@@ -169,8 +159,8 @@ src={data.image}
 <h4><small>{data.name.slice(0,43)}..</small></h4>
 <p>
 {
-data.is_paid_event?
-`Amount:${data.amount}`:''
+  data.is_paid_event?
+`Amount:${data.amount}`:"Free"
 }
 </p>
 <div className="btn_container">
@@ -199,18 +189,20 @@ route.push('/members/event_detail/')
   publication.map((pub,index)=>(
     <Publicationv2 key={index}>
     <img src={pub.image}/>
-    <h3>
-      {pub.name.slice(0,23)}..
-    </h3>
-    <p>
-      {pub.paragraphs.length!=0?pub.paragraphs[0].paragragh.slice(0,100):''}..
-    </p>
-    <a href="#"style={{'color':'#075a94'}}
-      onClick={()=>{
-        localStorage.setItem('publication_detail',JSON.stringify(pub))
-        route.push('/members/publicationDetail')
-      }}
-    >Read More</a>
+    <div>
+      <h3>
+        {pub.name.slice(0,23)}..
+      </h3>
+      <p>
+        {pub.paragraphs.length!=0?pub.paragraphs[0].paragragh.slice(0,100):''}..
+      </p>
+      <a href="#"style={{'color':'#075a94'}}
+        onClick={()=>{
+          localStorage.setItem('publication_detail',JSON.stringify(pub))
+          route.push('/members/publicationDetail')
+        }}
+      >Read More</a>
+    </div>
   </Publicationv2>
   ))
 }
@@ -220,19 +212,33 @@ route.push('/members/event_detail/')
                 <br/>
 
 <h2>News</h2>
-<Grid container spacing={2} style={{'padding':'1rem'}}>
+<br/>
+
+<Grid container spacing={2} style={{'padding':'1rem 0'}} gridTemplateColumns={4} gap={2}>
 {
   news.slice(0,3).map((data,index)=>(
-    <Newscard
-      key={index}
-      title={data.name.slice(0,23)+'..'}
-      image={data.image}
-      body={data.paragraphs.length==0?'....':data.paragraphs[0].paragragh.slice(0,100)}
-      data={data}
-      />
-  ))
+   <CustomCard 
+   key={index}
+   title={data.name}
+   url={data.image}
+   content={
+    data.paragraphs.length==0?'....':data.paragraphs[0].paragragh
+   }
+   viewMoreFunc={()=>{
+    localStorage.setItem('news',JSON.stringify(data))
+    route.push('/members/news/detail')
+   }}
+   />
+   ))
 }
 
+    {/* // <Newscard
+    //   key={index}
+    //   title={data.name.slice(0,23)+'..'}
+    //   image={data.image}
+    //   body={data.paragraphs.length==0?'....':data.paragraphs[0].paragragh.slice(0,100)}
+    //   data={data}
+    //   /> */}
 </Grid>
             </MainPane>
 

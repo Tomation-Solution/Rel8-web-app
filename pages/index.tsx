@@ -44,7 +44,7 @@ const Login =  () =>{
     const form = useRef(null);
     const {notify} = useToast()
     const dispatch = useAppDispatch();
-    const  { error,status} = useAppSelector(selectSignIn)
+    const  { error,status,data} = useAppSelector(selectSignIn)
     const {
         register,handleSubmit, formState: { errors },
     } = useForm<LoginType>({resolver:yupResolver(schema)})
@@ -60,7 +60,14 @@ const Login =  () =>{
     }
     if(status ==="succeeded"){
         notify("Login Successful",'success')
-        router.push('/members/home')
+        // @ts-ignore
+        if (data.has_updated){
+          router.push('/members/home')
+
+        }else{
+          router.push('/members/profile')
+
+        }
     }
   },[status])
 

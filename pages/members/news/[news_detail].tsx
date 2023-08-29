@@ -52,10 +52,10 @@ export const NewsDetail:NextPage = ()=>{
 :''
                 }
 
-
+<br />
             <div style={{'padding':'0  1rem','margin':'0 auto','maxWidth':'900px',}}>
                 <h2 style={{'textAlign':'center'}}>{data?.name}</h2>
-
+<br />
                 {
                     data?.paragraphs?.map((p,index)=>(
                         <div key={index}>

@@ -115,7 +115,7 @@ export const EventContainerV2 = styled.div`
  @media screen  and (min-width: 700px){
     display: flex;
     justify-content: space-between;
-    align-items: center
+    /* align-items: center */
 
  }
 `
@@ -125,12 +125,12 @@ width: 100%;
     margin: 1rem;
         padding: 1rem 0;
     p{
-        padding:.5rem 0;
+        /* padding:.5rem 0; */
     }
     img{
         width: 100%;
     border-radius: 10px;
-    max-height: 200px;
+    height: 140px;
         /* height: 80%; */
     }
     .btn_container{
@@ -156,7 +156,8 @@ width: 100%;
 `
 
 export const PublicationContainerv2 = styled.div`
-    padding: 1rem;
+    padding: 1rem 0;
+    gap:0 .7rem;
     width: 100%;
     @media screen  and (min-width:500px){
         display: flex;
@@ -167,11 +168,13 @@ export const PublicationContainerv2 = styled.div`
 `
 
 export const Publicationv2 = styled.div`
-    padding: .4rem;
-
+    /* padding: .4rem; */
+    div{
+        padding: 0 .5rem;
+    }
         img{
             width: 100%;
-            max-height: 200px;
+            height: 140px;
             object-fit: cover;
             border-radius:10px;
         }

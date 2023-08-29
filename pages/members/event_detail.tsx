@@ -14,6 +14,7 @@ import { registerForEventApi } from "../../redux/events/eventsApi";
 import useToast from "../../hooks/useToast";
 import MeetingRegistration from "../../components/Meeting/MeetingRegistration/MeetingRegistration";
 import axios from "../../helpers/axios";
+import useDynamicPaymentApi from "../../redux/payment.api";
 export const RequestRescheduleForm = (event_id:any):React.ReactElement=>{
   const [date,setDate] = useState<any>();
   const [time,setTime] = useState<any>();
@@ -85,6 +86,7 @@ const EventDetail:NextPage = ()=>{
     const isLaptop = useMediaQuery({
         query: '(min-width: 524px)'
       })
+      const {pay,loadingPay} = useDynamicPaymentApi()
       const {notify} = useToast()
       const {attendies,status,errorMessage} = useAppSelector(selectMemberEvent)
       const dispatch = useAppDispatch();
@@ -135,7 +137,7 @@ const EventDetail:NextPage = ()=>{
         <DashboardLayout>
 
         {
-            status==='pending'?
+            status==='pending'|| loadingPay?
             <Spinner/>:''
         }
 {/* RequestRescheduleForm */}
@@ -269,14 +271,22 @@ const EventDetail:NextPage = ()=>{
                     <CustomBtn 
                         onClick={e=>{
                           if(data.is_paid_event){
-                            notify('payment gateway not available now')
+                            pay({
+                              'forWhat':'event_payment',
+                              'payment_id':data.id,
+                              'query_param':''
+                            })
                           return
                           }
         
                         setAskQuetion(true)
                         }}
                         style={{'width':'25%'}}>
-                        Join
+                        
+                        {
+                          data.is_paid_event?
+                          'Pay For Event':'Join'
+                        }
                         </CustomBtn>
 
                         {/* <CustomBtn styleType='sec' 
