@@ -6,7 +6,8 @@ import NotificationsRounded from '@mui/icons-material/NotificationsRounded';
 import BasicPopover from '../../../PopOver';
 import axios from '../../../../helpers/axios';
 import { useEffect, useState } from 'react';
-
+import { getUserOrNull } from '../../../../utils/extraFunction';
+import NofiicationComponent from '../../../NofiicationComponent'
 
 const DashboardNavbarRoot = styled(AppBar)(({ theme }) => ({
   // backgroundColor: theme.palette.background.paper,
@@ -16,6 +17,8 @@ const DashboardNavbarRoot = styled(AppBar)(({ theme }) => ({
 export const DashboardNavbar = (props) => {
   const { onSidebarOpen, type, ...other } = props;
   const [notification ,setNotification] =useState([])
+  const user =getUserOrNull()
+
   const getNotification  = async ()=>{
     try{
       const resp = await axios.get('/tenant/reminder/member_reminder/')
@@ -68,43 +71,15 @@ export const DashboardNavbar = (props) => {
             {type}
              {/* Dashboards */}
           </Typography>
-          {/* <Tooltip title="Search">
-            <IconButton sx={{ ml: 1 }}>
-              <SearchIcon fontSize="small" />
-            </IconButton>
-          </Tooltip> */}
-          
-          {/* <Box  style={{'border':'1px solid red','width':'400px'}} /> */}
-{/*           
-          <Tooltip title="My Profile">
-            <IconButton sx={{ ml: 1 }}>
-              
-              <Avatar sx={{ height: 30, width: 30 }}
-              // src="/static/images/avatars/avatar_1.png"
-            >
-            </Avatar>
-            </IconButton>
-          </Tooltip> */}
-            <BasicPopover
-            Button={
-              <Tooltip title="Notifications">
-<IconButton>
-              <Badge
-                    badgeContent={4}
-                    color="primary"
-                    variant="dot"
-                  >
-                    <NotificationsRounded/>
-              </Badge>
-            </IconButton>
-          </Tooltip>
-            }>
-              {
-                notification.map((data,index)=>(
-                  <p key={index} style={{'padding':'.9rem 0'}}>{data.title}</p>
-                ))
-              }
-            </BasicPopover>
+
+             {/* </DashboardLayoutRoot> */}
+      {
+        user?
+        <NofiicationComponent
+        user={user}
+        />
+        :''
+      }
 </Box>
             
           

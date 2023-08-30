@@ -7,7 +7,6 @@
     "start": "next start",
     "lint": "next lint",
     "export": "next build && next export"
-
   },
   "dependencies": {
     "@emotion/react": "^11.7.1",
@@ -17,6 +16,8 @@
     "@mui/icons-material": "^5.4.2",
     "@mui/material": "^5.4.2",
     "@mui/x-date-pickers": "^5.0.0-alpha.3",
+    "@novu/headless": "^0.18.0",
+    "@novu/notification-center": "^0.18.0",
     "@reduxjs/toolkit": "^1.8.0",
     "@types/styled-components": "^5.1.26",
     "axios": "^0.27.2",

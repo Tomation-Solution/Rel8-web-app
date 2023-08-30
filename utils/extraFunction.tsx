@@ -113,12 +113,13 @@ export const generate_url_params= ():string=>{
 
 type getUserOrNullResponse = null | UserType
 export const getUserOrNull = ():getUserOrNullResponse=>{
-  const user  = localStorage.getItem('token')
-  if (user) {
+  try{
+    const user  = localStorage.getItem('token')
     return JSON.parse(user)
+
+  }catch(err:any){
+    return null
   }
-  return null
+  
 
 }
-
-
