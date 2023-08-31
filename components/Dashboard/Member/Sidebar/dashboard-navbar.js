@@ -76,7 +76,7 @@ export const DashboardNavbar = (props) => {
       {
         user?
         <NofiicationComponent
-        user={user}
+        user={`${user}-nimn`}
         />
         :''
       }
