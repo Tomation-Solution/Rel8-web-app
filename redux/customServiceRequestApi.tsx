@@ -1,0 +1,47 @@
+import axios from "../helpers/axios"
+
+
+export type ServiceType =  {
+    "id": number,
+    "service_name": string,
+    "intro_text": string,
+    "fields_subbission": {
+        "fields": string[]
+    },
+    "file_subbission": {
+        "fields": string[]
+    },
+    "is_paid": false,
+    "break_down_of_payment":any ,
+    "amount": string
+}
+
+export const getCustomServices = async ():Promise<ServiceType[]>=>{
+    const resp  = await axios.get(`/tenant/services_request/rel8-custom-services-member-handler/get_services/`)
+    return resp.data.data
+}
+export const getServiceDetail = async ({service_id}:{service_id:string}):Promise<ServiceType>=>{
+    const resp  = await axios.get(`/tenant/services_request/rel8-custom-services-member-handler/${service_id}/get_service/`)
+    return resp.data.data
+}
+
+
+type memberServiceSubmmisionProp = {
+    "id": number,
+    "status": string,
+    "custom_service": number,
+    "amount": string,
+    "fields_subbission": {"id": number,"value": string,"name": string}[],
+    "files": {"id": number,"value": string,"name": string}[]
+}
+export const getAllSubmissionOfAService = async ({service_id}:{service_id:string}):Promise<memberServiceSubmmisionProp[]>=>{
+    const resp  = await axios.get(`/tenant/services_request/rel8-custom-services-member-handler/?service_id=${service_id}`)
+    return resp.data.data
+}
+
+export const memberServiceSubmission = async (form:any) =>{
+
+    const resp  = await axios.post(`/tenant/services_request/rel8-custom-services-member-handler/`,form)
+    return resp.data
+
+}
