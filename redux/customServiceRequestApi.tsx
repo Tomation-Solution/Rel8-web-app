@@ -45,3 +45,28 @@ export const memberServiceSubmission = async (form:any) =>{
     return resp.data
 
 }
+
+export type MemberServiceSubmissionType = {
+    "id": number,
+    "status": string,
+    "custom_service": number,
+    "amount": string,
+    "fields_subbission": {
+        "id": number,
+        "value":string,
+        "name": string
+    }[],
+    "files": {
+        "id": number,
+        "name": string,
+        "value": string
+    }[ ],
+    "full_name": string,
+    "service_name": string
+}
+
+export const getMemberServiceSubmission = async({member_submission_id}:{member_submission_id:string}):Promise<MemberServiceSubmissionType>=>{
+    const resp  = await axios.get(`/tenant/services_request/rel8-custom-services-member-handler/${member_submission_id}/`,)
+    return resp.data.data
+
+}

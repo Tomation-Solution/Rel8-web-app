@@ -1,31 +1,33 @@
-import { DashboardLayout } from "../../../../components/Dashboard/Member/Sidebar/dashboard-layout"
+import { DashboardLayout } from "../../../../../components/Dashboard/Member/Sidebar/dashboard-layout"
 
 import { useForm,useFieldArray } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import { useMutation, useQuery } from "react-query";
-import CustomBtn from "../../../../components/CustomBtn/Button";
-import InputWithLabel from "../../../../components/forms/InputWithLabel";
+import CustomBtn from "../../../../../components/CustomBtn/Button";
+import InputWithLabel from "../../../../../components/forms/InputWithLabel";
 import {useRouter} from 'next/router'
-import { ServiceType, getServiceDetail, memberServiceSubmission } from "../../../../redux/customServiceRequestApi";
-import Spinner from "../../../../components/Spinner";
-import useToast from "../../../../hooks/useToast";
+import {  MemberServiceSubmissionType, ServiceType, getMemberServiceSubmission, getServiceDetail, memberServiceSubmission } from "../../../../../redux/customServiceRequestApi";
+import Spinner from "../../../../../components/Spinner";
+import useToast from "../../../../../hooks/useToast";
  
 const schema = yup.object({
     'custom_service':yup.string().required(),
     'fields_subbission':yup.array().of(yup.object({
         'name':yup.string().required(),
         'value':yup.string().required(),
+        id:yup.number()
     })),
     file_submission:yup.array().of(yup.object({
         'name_of_file':yup.string().required(),
         'file':yup.mixed(),
+        'file_link':yup.string()
 
     }))
 })
 type FormI =  yup.InferType<typeof schema>
 
-const SubmmissionPage = ()=>{
+const UpdateSubmmissionPage = ()=>{
     const { 
         register,setValue, 
         handleSubmit,control,
@@ -41,47 +43,45 @@ const SubmmissionPage = ()=>{
         control,
       });
     const  route = useRouter()
-    const {service_id,edit} = route.query
+    const {member_submission_id,} = route.query
  
       const {notify} = useToast()
-    const {isLoading,data} = useQuery(['getServiceDetail',service_id],()=>getServiceDetail({service_id:typeof service_id==='string'?service_id:'-1'}),{
-        'enabled':typeof service_id==='string'?true:false,
+    const {isLoading,data} = useQuery(['getMemberServiceSubmission',member_submission_id],()=>getMemberServiceSubmission({member_submission_id:typeof member_submission_id==='string'?member_submission_id:'-1'}),{
+        'enabled':typeof member_submission_id==='string'?true:false,
         refetchOnWindowFocus:false,
-        'onSuccess':(data:ServiceType)=>{
-            console.log(data)
-            if(typeof service_id =='string'){
-                setValue('custom_service',service_id)
-            }
-            
-            setValue('fields_subbission',data.fields_subbission.fields.map((d,index)=>({
-                'name':d,
-                // 'value':typeof edit=='string'?d
-                'value':''
+        'onSuccess':(data:MemberServiceSubmissionType)=>{
+                        setValue('custom_service',data.custom_service.toString())
+            setValue('fields_subbission',data.fields_subbission.map((d,index)=>({
+                'name':d.name,
+                'value':d.value,
+                'id':d.id
             })))
 
-            setValue('file_submission',data.file_subbission.fields.map((d,index)=>({
-                'file':'',
-                'name_of_file':d
+            setValue('file_submission',data.files.map((d,index)=>({
+                'file':null,
+                'name_of_file':d.name,
+                'file_link':d.value
             })))
         }
     })
     const {isLoading:submitting, mutate} = useMutation(memberServiceSubmission,{
         'onSuccess':(d)=>{
                 notify('Our Staff would reach out to you soon','success')
-                route.push(`/members/services/${service_id}/`)
+                route.push(`/members/services/${data.custom_service}/`)
         }
     })
       const onSubmit=(data:FormI)=>{
-        // console.log(data)
+        console.log(data)
         const form= new FormData()
         //we get all the files and rename it
         data.file_submission.map((file,index)=>{
-            form.append('files',file.file[0],file.name_of_file)  
+            if(file.file){
+                form.append('files',file.file[0],file.name_of_file)  
+            }
         })
     form.append('fields_subbission',JSON.stringify(data.fields_subbission))
-        if(typeof service_id=='string'){
-            form.append('custom_service',service_id)
-        }
+    form.append('custom_service',data.custom_service)
+        
 
     mutate(form)
       }
@@ -122,6 +122,7 @@ const SubmmissionPage = ()=>{
                         register={register(`file_submission.${index}.file`)}
                         type='file'
                         />
+                        <a href={d.file_link} target="_blank" rel="noreferrer">view current upload</a>
 
                     </div>
                     ))
@@ -132,4 +133,4 @@ const SubmmissionPage = ()=>{
     )
 }
 
-export default SubmmissionPage
+export default UpdateSubmmissionPage

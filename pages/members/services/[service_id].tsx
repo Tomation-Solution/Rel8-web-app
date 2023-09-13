@@ -21,15 +21,7 @@ const CustomServiceDetail = ()=>{
 
     const prop_columns =[
         
-        {
-            Header:'Service Name',
-            accessor:'c',
-            Cell:(tableProps:any)=>(
-                <div>
-                   { data?.service_name??''}
-                </div>
-            )
-        },
+        
         {
             Header:'Approval Status',
             accessor:'status',
@@ -38,7 +30,23 @@ const CustomServiceDetail = ()=>{
             Header:'Update Subbmission',
             accessor:'a',
             Cell:(tableProps:any)=>(
-                  <CustomBtn styleType='sec'>edit</CustomBtn>
+                  <div>
+
+
+                    <CustomBtn styleType='sec' 
+                    onClick={e=>{
+                        e.preventDefault()
+                        if(tableProps.row.original.status=='pending'){
+                            route.push(`/members/services/submission/update/${tableProps.row.original.id}/`)
+                        }
+                    }}
+                    style={{'width':'150px'}}>
+                    {
+                     tableProps.row.original.status=='pending'?
+                     'edit request':"You can't edit aprroved request"
+                    }
+                        </CustomBtn>   
+                  </div>
             )
         },
     ]
@@ -47,10 +55,12 @@ const CustomServiceDetail = ()=>{
         title={data?.service_name??''}
         >
             { isLoading && <Spinner />}
-                <div style={{'margin':'0 auto','maxWidth':'900px'}}>
+                <div style={{'margin':'0 auto','maxWidth':'900px',
+                // 'border':'1px solid red'
+                }}>
                 <div>
                 <br /><br />
-            <h1>{data?.intro_text}:</h1>
+            <h3>{data?.intro_text}:</h3>
             <ul>
                 {
                     data?.fields_subbission.fields?.map((d,index)=>(
@@ -64,9 +74,9 @@ const CustomServiceDetail = ()=>{
                 }
             </ul>
             <br />
-            <div style={{'display':'flex','justifyContent':'space-between','alignItems':'center'}}>
+            <div style={{'display':'flex','justifyContent':'space-between','alignItems':'center','flexWrap':'wrap','gap':'10px'}}>
             <h2>Previous Applications</h2>
-            <CustomBtn  style={{'width':'200px'}} onClick={e=>{
+            <CustomBtn  style={{'maxWidth':'200px'}} onClick={e=>{
                 route.push(`/members/services/submission/${service_id}/`)
             }}>Apply for {data?.service_name??''}</CustomBtn>
             </div>
