@@ -119,11 +119,13 @@ export default function Home(props){
                       }
                     </div>
               
-   <Grid   style={{'padding':'1rem 0'}} container gap={2}>
+   <PublicationContainerv2  
+   >
 
 {
   meetings.slice(0,3).map((data,index)=>(
     <CustomCard
+    key={index}
     url={data.image?data.image:'https://images.unsplash.com/photo-1431540015161-0bf868a2d407?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjN8fG1lZXRpbmd8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60https://images.unsplash.com/photo-1431540015161-0bf868a2d407?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjN8fG1lZXRpbmd8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60'}
     title={data.name}
     content={
@@ -140,7 +142,7 @@ export default function Home(props){
 
 
 
-</Grid >
+</PublicationContainerv2 >
                 <br/>
                 <div >
                   {
@@ -214,7 +216,18 @@ route.push('/members/event_detail/')
 <h2>News</h2>
 <br/>
 
-<Grid container spacing={2} style={{'padding':'1rem 0'}} gridTemplateColumns={4} gap={2}>
+{/* <Grid 
+container  
+style={{
+  'padding':'1rem 0',
+'border':'1px solid red'
+}}
+ gridTemplateColumns={2} gap={1}
+ > */}
+<PublicationContainerv2
+// style={{'gap':'2'}}
+>
+
 {
   news.slice(0,3).map((data,index)=>(
    <CustomCard 
@@ -231,19 +244,13 @@ route.push('/members/event_detail/')
    />
    ))
 }
+</PublicationContainerv2>
 
-    {/* // <Newscard
-    //   key={index}
-    //   title={data.name.slice(0,23)+'..'}
-    //   image={data.image}
-    //   body={data.paragraphs.length==0?'....':data.paragraphs[0].paragragh.slice(0,100)}
-    //   data={data}
-    //   /> */}
-</Grid>
+{/* </Grid> */}
             </MainPane>
 
             <SidePane>
-              <h2>Gallery</h2>
+              <h2 style={{'textAlign':'center'}}>Gallery</h2>
           <div style={{'display':'flex','flexWrap':'wrap','gap':'10px'}}>
           {
           images.map((img,index)=>(

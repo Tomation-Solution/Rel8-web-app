@@ -8,14 +8,22 @@ thick blue - #075a94
 export const HomeLayout = styled.div`
     /* margin: 0 auto; */
 @media screen and (min-width: 800px){
-        padding: 1.8rem;
+        /* padding: 1.8rem; */
         display: flex;
         max-width: 2000px;
-        /* border: 1px solid red; */
         margin: 0 auto;
+        gap: 30px;
         justify-content: space-between;
 }
+@media screen and (min-width: 1700px){
+    /* gap:  0 30px; */
+    /* border: 1px solid red; */
+
+}
+
 `
+
+
 
 export const MeetingHeader = styled.div`
     background-color: #075a9490;
@@ -43,7 +51,8 @@ export const MeetingHeader = styled.div`
 `
 
 export const MainPane = styled.div`
-max-width:900px;
+/* max-width:900px; */
+width: 70%;
 padding: 1rem;
 
 `
@@ -51,6 +60,7 @@ export const SidePane = styled.aside`
 display: flex;
 flex-direction: column;
 /* border: 1px solid red; */
+width: 30%;
 
     .sideImages{
         width: 250px;

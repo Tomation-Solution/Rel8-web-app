@@ -16,16 +16,21 @@ type Prop ={
 }
 export default function CustomCard({ url,title,content,viewMoreFunc}:Prop) {
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card style={{
+      width:'100%',
+      'minWidth':'250px'
+       }}>
       <CardMedia
         component="img"
-        alt="green iguana"
-        height="120"
+        alt={title}
+        height="160px"
         image={url}
+        // classes={'MuiCardMedia-img'}
+        style={{'objectFit':'fill'}}
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          {title}
+          {title?.slice(0,30)}...
         </Typography>
         <Typography variant="body2" color="text.secondary">
           {
