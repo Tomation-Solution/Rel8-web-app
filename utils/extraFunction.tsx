@@ -1,5 +1,5 @@
 import { MemberType } from "../redux/members/membersApi"
-
+import numbro from "numbro";
 
 
 
@@ -122,4 +122,11 @@ export const getUserOrNull = ():getUserOrNullResponse=>{
   }
   
 
+}
+
+
+
+
+export const toCurrency = (amount: number | string) => {
+  return '₦'+ numbro(amount).format('₦0,0');
 }

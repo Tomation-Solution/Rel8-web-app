@@ -28,7 +28,7 @@ import { useRouter } from "next/router";
 import { selectMeetings } from "../../redux/memberMeeting/memberMeetingSlice";
 import { getMeetings, registerForMeeting } from "../../redux/memberMeeting/memberMeetingApi";
 import CustomCard from '../../components/CustomCard'
-
+import {toCurrency} from '../../utils/extraFunction'
 export default function Home(props){
   const route = useRouter()
     const dispatch = useAppDispatch()
@@ -162,7 +162,7 @@ src={data.image}
 <p>
 {
   data.is_paid_event?
-`Amount:${data.amount}`:"Free"
+`Amount:${ toCurrency(data.amount)}`:"Free"
 }
 </p>
 <div className="btn_container">
