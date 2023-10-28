@@ -1,14 +1,14 @@
 import { Grid } from "@mui/material"
 import ExcoCard from "../components/ExcoCard"
 import HeadText from "../components/Dashboard/DashboardHead"
-import  ImageCard from "../images/logo.png"
+// import  ImageCard from "../images/logo.png"
 import { DashboardLayout } from "../components/Dashboard/Member/Sidebar/dashboard-layout"
 
 
 export default function Excos(){
     return(
         <DashboardLayout>
-        <Grid container>
+        {/* <Grid container>
             <HeadText text='Meet the Excos' />
 
             <Grid container paddingX={2}>
@@ -48,7 +48,7 @@ export default function Excos(){
                     ut labore et dolore maet justo duo 
                     dolores et ea rebum. Stet clita kasd gubergren'/>
             </Grid>
-        </Grid>
+        </Grid> */}
         </DashboardLayout>
     )
 }

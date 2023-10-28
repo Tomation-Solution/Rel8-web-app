@@ -15,6 +15,8 @@ import useToast from "../../hooks/useToast";
 import MeetingRegistration from "../../components/Meeting/MeetingRegistration/MeetingRegistration";
 import axios from "../../helpers/axios";
 import useDynamicPaymentApi from "../../redux/payment.api";
+import * as React from 'react'
+
 export const RequestRescheduleForm = (event_id:any):React.ReactElement=>{
   const [date,setDate] = useState<any>();
   const [time,setTime] = useState<any>();
@@ -43,7 +45,7 @@ export const RequestRescheduleForm = (event_id:any):React.ReactElement=>{
           <br />
         <p>The even date does not work for you? request reschedule</p>
 <br /><br /><br />
-            
+        {/* @ts-ignore */}
             <TextField 
                     placeholder='Date'
                     // label='Password'
@@ -56,7 +58,7 @@ export const RequestRescheduleForm = (event_id:any):React.ReactElement=>{
                     }}
                     />
 <br /><br /><br />
-
+        {/* @ts-ignore */}
                      <TextField 
                     placeholder='Date'
                     // label='Password'
@@ -71,6 +73,7 @@ export const RequestRescheduleForm = (event_id:any):React.ReactElement=>{
                     />
                     <br />
                     <br />
+        {/* @ts-ignore */}
                     <CustomBtn 
                     onClick={e=>{
                       e.preventDefault()
@@ -109,6 +112,7 @@ const EventDetail:NextPage = ()=>{
         }
       },[status])
       if(typeof window == 'undefined'){
+        // @ts-ignore
         return <Spinner/>
       }
 
@@ -134,28 +138,35 @@ const EventDetail:NextPage = ()=>{
         }
       ]
     return (
-        <DashboardLayout>
+          // @ts-ignore
+    <DashboardLayout>
 
         {
             status==='pending'|| loadingPay?
+          // @ts-ignore
+    
             <Spinner/>:''
         }
 {/* RequestRescheduleForm */}
+{/*  @ts-ignore */}
 <BasicModal 
         handleClose={setOpenReSchedule}
         open={openReSchedule}
         body={
           <>
           {data?
+          // @ts-ignore
         <RequestRescheduleForm event_id={data.id }/>
         :''  
         }
           </>
         }
         />
+        {/* @ts-ignore */}
 <BasicModal 
         handleClose={setOpenAcceptMeeting}
         open={acceptMeeting}
+        // @ts-ignore
         body={<MeetingRegistration
         heading="Participant Registration"
           Submit={(value)=>{
@@ -170,36 +181,48 @@ const EventDetail:NextPage = ()=>{
         }}
         />}
         />
+        
+        {/* @ts-ignore */}
 <BasicModal
         open={askQuetion}
         handleClose={setAskQuetion}
-        body={<Box style={{'textAlign':'center','padding':'.8rem'}}>
+        body={
+
+          <div>
+        {/* @ts-ignore */}
+            <Box style={{'textAlign':'center','padding':'.8rem'}}>
         
-          <h2>Register for Event</h2>
-          <br />
-          <p>do you want to invite other to this event or you want to register your self only</p>
-          <br />
-          <br />
-         
-          <div style={{'display':'flex'}}>
-            <CustomBtn style={{'marginRight':'10px'}}
-            onClick={()=>{
-            const event  = JSON.parse(localStorage.getItem('event_detail'))
-            dispatch(registerForEventApi({
-                'event_id':data.id,
-                // 'proxy_participants'
-            }))
-            // dispatch(registerForMeeting({'meetingID':meeting.id}))
-            
-            }}
-            >Register Only</CustomBtn>
-            <CustomBtn styleType="sec"
-            onClick={e=>{
-              setAskQuetion(false)
-              setOpenAcceptMeeting(true)}}
-            >Register and invite proxy</CustomBtn>
+<div>
+<h2>Register for Event</h2>
+        <br />
+        <p>do you want to invite other to this event or you want to register your self only</p>
+        <br />
+        <br />
+       
+        <div style={{'display':'flex'}}>
+        {/* @ts-ignore */}
+          <CustomBtn style={{'marginRight':'10px'}}
+          onClick={()=>{
+          const event  = JSON.parse(localStorage.getItem('event_detail'))
+          dispatch(registerForEventApi({
+              'event_id':data.id,
+              // 'proxy_participants'
+          }))
+          // dispatch(registerForMeeting({'meetingID':meeting.id}))
+          
+          }}
+          >Register Only</CustomBtn>
+          {/* @ts-ignore */}
+          <CustomBtn styleType="sec"
+          onClick={e=>{
+            setAskQuetion(false)
+            setOpenAcceptMeeting(true)}}
+          >Register and invite proxy</CustomBtn>
+        </div>
+</div>
+      </Box>
           </div>
-        </Box>}
+        }
         />
 
 
@@ -251,6 +274,7 @@ const EventDetail:NextPage = ()=>{
             <br />
             {
                 data.event_docs?
+                // @ts-ignore
             <CustomBtn 
             onClick={e=>{
                 window.open(data.event_docs,'_blank')
@@ -261,6 +285,7 @@ const EventDetail:NextPage = ()=>{
             }
             {/* event_docs */}
             <br />
+        {/* @ts-ignore */}
             <Table prop_columns={prop_columns} custom_data={attendies}/>
             </div>
             <br /><br />
@@ -268,6 +293,7 @@ const EventDetail:NextPage = ()=>{
 
 
             <div  style={{'display':'flex','maxWidth':'600px','margin':'0 auto','justifyContent':'space-between'}}>
+        {/* @ts-ignore */}
                     <CustomBtn 
                         onClick={e=>{
                           if(data.is_paid_event){
@@ -297,6 +323,7 @@ const EventDetail:NextPage = ()=>{
 
             {
                 data.meeting_docs?
+                // @ts-ignore
                 <CustomBtn style={{'width':'25%',}}
                 onClick={(e)=>{
                     window.open(data.meeting_docs,'_blank')

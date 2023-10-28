@@ -129,4 +129,5 @@ export const getUserOrNull = ():getUserOrNullResponse=>{
 
 export const toCurrency = (amount: number | string) => {
   return '₦'+ numbro(amount).format('₦0,0');
+  // return '0.00'
 }

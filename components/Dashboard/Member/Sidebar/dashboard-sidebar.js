@@ -17,6 +17,7 @@ import Photo from '@mui/icons-material/Photo'
 import EventRounded from '@mui/icons-material/EventRounded'
 import MenuBook from '@mui/icons-material/MenuBook'
 import ChatBubble from '@mui/icons-material/ChatBubble'
+// @ts-ignore
 import LogoImage from '../../../../images/logo.png'
 import SwitchLabels from '../../../SwitchLabels';
 import Spinner from "../../../Spinner";

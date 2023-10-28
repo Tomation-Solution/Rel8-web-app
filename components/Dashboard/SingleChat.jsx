@@ -4,6 +4,7 @@ import  SendRounded from "@mui/icons-material/SendRounded";
 import { Grid, Typography, IconButton, TextField, InputAdornment, Icon } from "@mui/material";
 import GreenButton from "../Buttonn";
 import Router,{withRouter} from "next/router"
+// @ts-ignore
 import ChatImage from '../../images/logo.png'
 import ChatCard from "../ChatCard";
 

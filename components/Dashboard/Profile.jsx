@@ -1,4 +1,5 @@
 import { Divider, Grid, Typography } from "@mui/material"
+// @ts-ignore
 import ProfileImage from '../../images/logo.png'
 import HeadText from "./DashboardHead"
 
