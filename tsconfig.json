@@ -26,5 +26,8 @@
 , "components/MarkoBtn.jsx", "helpers/setUpInterceptor.jsx", "pages/dashboard.js"  ],
   "exclude": [
     "node_modules"
-  ]
+  ],
+  "paths": {
+    "react": [ "./node_modules/@types/react" ]
+  }
 }
