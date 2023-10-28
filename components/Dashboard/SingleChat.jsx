@@ -51,7 +51,7 @@ export default function SingleChat (){
             <Grid container justifyContent='space-between' paddingY={2}>
                 <Typography marginBottom={2} className='text' style={{'textAlign':'center'}}>Private Chatroom</Typography>
                 {/* <GreenButton text='General Chat' click={()=>Router.back} radius='10px'
-                textColor='white' paddingY={1} paddingX={2} bg='#075a94'
+                textColor='white' paddingY={1} paddingX={2} bg='#365c2a'
                 /> */}
             </Grid>
 

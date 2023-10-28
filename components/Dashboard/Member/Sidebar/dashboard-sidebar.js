@@ -326,7 +326,7 @@ const content = (
         open
         PaperProps={{
           sx: {
-            backgroundColor: '#075a94',
+            backgroundColor: '#365c2a',
             color: '#FFFFFF',
             width: 220,
             borderRadius:"10px"
@@ -348,7 +348,7 @@ const content = (
       open={open}
       PaperProps={{
         sx: {
-          backgroundColor: '#075a94',
+          backgroundColor: '#365c2a',
           color: '#FFFFFF',
           width: 250
         }

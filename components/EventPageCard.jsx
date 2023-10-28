@@ -46,8 +46,8 @@ export default function EventPageCard (props){
                         <Typography textAlign='center' paddingBottom={1} className='light-text'>Note this event attracts a fee of - N 25,000</Typography>
                         }
                         <Grid justifyContent='center' container>
-                            <GreenButton text='Yes' textColor='white' bg='#075a94' paddingX={4} paddingY={1} radius={5} />
-                            <GreenButton text='Cancel' textColor='#075a94'  paddingX={4} paddingY={1} radius={5} click={handleClose} />
+                            <GreenButton text='Yes' textColor='white' bg='#365c2a' paddingX={4} paddingY={1} radius={5} />
+                            <GreenButton text='Cancel' textColor='#365c2a'  paddingX={4} paddingY={1} radius={5} click={handleClose} />
                         </Grid>
                     </Grid>
                     
@@ -63,7 +63,7 @@ export default function EventPageCard (props){
                 </Button>
                 <GreenButton/> */}
                 <GreenButton text={props.btnText} radius='10px' click={handleOpen}
-               textColor='white' paddingY={1} paddingX={1}  bg='#075a94'/>
+               textColor='white' paddingY={1} paddingX={1}  bg='#365c2a'/>
             </Grid>
         </Grid>
     )

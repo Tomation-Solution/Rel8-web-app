@@ -159,7 +159,7 @@ const Login =  () =>{
               </Grid>
           </Grid>
           <SubmitButton  text={status==="loading"?"Loading":'Login'} radius='10px'
-         textColor='white' paddingY={1} paddingX={2} bg='#075a94'
+         textColor='white' paddingY={1} paddingX={2} bg='#365c2a'
          
          />
          </form>

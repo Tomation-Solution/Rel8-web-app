@@ -83,7 +83,7 @@ const Dues:NextPage = ()=>{
             //         <p>
             //               {
             //                 tableProps.row.original.is_overdue?
-            //                 <CheckIcon style={{'color':'#075a94'}}/>
+            //                 <CheckIcon style={{'color':'#365c2a'}}/>
             //                 :
             //                 <PendingIcon style={{'color':'yellow'}}/>
             //               }
@@ -107,7 +107,7 @@ const Dues:NextPage = ()=>{
             //         <p>
             //               {
             //                 tableProps.row.original.is_paid?
-            //                 <CheckIcon style={{'color':'#075a94'}}/>
+            //                 <CheckIcon style={{'color':'#365c2a'}}/>
             //                 :
             //                 <PendingIcon style={{'color':'yellow'}}/>
             //               }
@@ -160,7 +160,7 @@ const Dues:NextPage = ()=>{
             }
           <div style={{'margin':'1rem auto','maxWidth':'800px','display':'block'}}>
 
-                <div style={{'display':'inline-block','padding':'1.4rem','borderRadius':'10px','color':'white','backgroundColor':'#075a94'}}>
+                <div style={{'display':'inline-block','padding':'1.4rem','borderRadius':'10px','color':'white','backgroundColor':'#365c2a'}}>
                     <p><strong>Outstanding</strong>: {due_break_down.outstanding}</p>
                     <p><strong>Paid</strong>: {due_break_down.total_paid}</p>
                 </div>
