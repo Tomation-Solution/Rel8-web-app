@@ -68,12 +68,15 @@ export default function AddNews(props){
     console.log({errors})
     useEffect(()=>{
         if(errors.name){
+            // @ts-ignore
             notify(errors.name?.message)
         }
         if(errors.image){
+            // @ts-ignore
             notify(errors.image?.message)
         }
         if(errors.body){
+            // @ts-ignore
             notify(errors.body?.message)
         }
     },[errors])
