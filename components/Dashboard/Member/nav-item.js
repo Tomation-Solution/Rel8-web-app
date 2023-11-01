@@ -54,7 +54,7 @@ export const NavItem = (props) => {
           sx={{
             backgroundColor: active && '#E1F1DC',
             borderRadius: 1,
-            color: active ? '#365c2a' : 'white',
+            color: active ? '#1771a3' : 'white',
             fontWeight: '300',
             fontSize:13,
             justifyContent: 'flex-start',
@@ -85,9 +85,9 @@ export const NavItem = (props) => {
           disableRipple
           onClick={handleClick}
           sx={{
-            backgroundColor: active && '#365c2a',
+            backgroundColor: active && '#1771a3',
             borderRadius: 1,
-            color: active ? '#365c2a' : 'white',
+            color: active ? '#1771a3' : 'white',
             fontWeight: '300',
             fontSize:13,
             justifyContent: 'flex-start',

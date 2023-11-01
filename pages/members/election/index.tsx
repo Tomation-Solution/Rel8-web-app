@@ -42,10 +42,10 @@ const Election:NextPage = ()=>{
                     <div className="btn_container">
                 <button
                             style={{
-                    border: ' 1px solid #365c2a',
+                    border: ' 1px solid #1771a3',
                     display: 'inlineBlock',
                     padding: '.5rem 1rem',
-                    cursor: 'pointer', color:  '#365c2a',
+                    cursor: 'pointer', color:  '#1771a3',
                             }}
                             onClick={()=>{
                                 //

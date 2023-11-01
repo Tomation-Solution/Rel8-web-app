@@ -25,7 +25,7 @@ export default function Search(){
                         />
                     </Grid>
                     <Grid item>
-                        <Button paddingLeft={3} variant='contained' style={{backgroundColor:'#365C2A'}} >
+                        <Button paddingLeft={3} variant='contained' style={{backgroundColor:'#1771a3'}} >
                             <SearchRounded/>
                         </Button>
                     </Grid>

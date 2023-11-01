@@ -55,7 +55,7 @@ const UploadSecondLevelDb = ():React.ReactElement=>{
             <br />
                 <GreenButton
                 text='Add New'
-                bg='#365C2A'
+                bg='#1771a3'
                 radius={5}
                 textColor='white'
                 paddingX={5}

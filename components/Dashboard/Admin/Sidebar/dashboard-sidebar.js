@@ -15,7 +15,7 @@ import Info from  '@mui/icons-material/Info'
 import LogoutRounded from  '@mui/icons-material/LogoutRounded'
 import EventRounded from  '@mui/icons-material/EventRounded'
 // @ts-ignore
-import LogoImage from '../../../../images/logo.png'
+import LogoImage from '../../../../images/logo.svg'
 
 const items = [
   {
@@ -153,7 +153,7 @@ export const DashboardSidebar = (props) => {
         open
         PaperProps={{
           sx: {
-            backgroundColor: '#365C2A',
+            backgroundColor: '#1771a3',
             color: '#FFFFFF',
             width: 200,
             borderRadius:"10px"

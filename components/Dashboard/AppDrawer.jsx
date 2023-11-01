@@ -16,7 +16,7 @@ import ListItemText from '@mui/material/ListItemText';
 import List from '@mui/material/List';
 import styles from '../../styles/Home.module.css'
 // @ts-ignore
-import Logo from "../../images/logo.png"
+import Logo from "../../images/logo.svg"
 import DashboardRounded from '@mui/icons-material/DashboardRounded'
 import Logout from '@mui/icons-material/Logout'
 import ArrowBack from '@mui/icons-material/ArrowBack'
@@ -190,7 +190,7 @@ export default function AppDrawer () {
         <Drawer
            PaperProps={{
             sx: {
-              backgroundColor: "#365C2A",
+              backgroundColor: "#1771a3",
               color: "white",
               margin:"7px",
               borderRadius:"8px"
@@ -240,7 +240,7 @@ export default function AppDrawer () {
                   {/* <NavLink href="/search" className="nav-item nav-link">Users</NavLink>, */}
 
                 </ListItemIcon>
-                <ListItemText className='iconsText'   primary={<Typography type="body2" className='text nav-link' style={{ color: index==selected?'#365C2A':'white', fontSize:'12px' }}>{text}</Typography>}/>
+                <ListItemText className='iconsText'   primary={<Typography type="body2" className='text nav-link' style={{ color: index==selected?'#1771a3':'white', fontSize:'12px' }}>{text}</Typography>}/>
               </ListItem>
             ))}
           </List>

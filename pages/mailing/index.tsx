@@ -55,7 +55,7 @@ const ActivateAccount:NextPage = ()=>{
             <div style={{'maxWidth':'700px',}}>
               <h1 style={{'fontSize':'2.5rem','textAlign':'center','color':'#1c1e21'}}
 
-              >Your Account Has Been<span style={{'color':'#365c2a'}}> Verified</span></h1>
+              >Your Account Has Been<span style={{'color':'#1771a3'}}> Verified</span></h1>
               <br />
               <p style={{'color':'#1c1e21'}}>Login to get to meet other members!!</p> 
               <br />
@@ -88,7 +88,7 @@ const ActivateAccount:NextPage = ()=>{
 {
           status==='idle'?
             <div style={{'maxWidth':'700px',}}>
-        <h1 style={{'color':'#1c1e21'}}>Please Click the button below to  <span style={{'color':'#365c2a'}}> Verify</span> </h1>
+        <h1 style={{'color':'#1c1e21'}}>Please Click the button below to  <span style={{'color':'#1771a3'}}> Verify</span> </h1>
         <br />
 
               <p style={{'color':'#1c1e21'}}>Verify Your Account</p> 

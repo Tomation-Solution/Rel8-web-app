@@ -402,7 +402,7 @@ export function AllEventTable(props) {
               onClick={()=>{
                 setCurrentEventID(row.id)
                 setOpenEditEvent(true)}} 
-              sx={{color:'#365C2A'}}/> 
+              sx={{color:'#1771a3'}}/> 
                       <Delete 
                       onClick={()=>{
                        if( window.confirm('Are you sure you want to delete')){

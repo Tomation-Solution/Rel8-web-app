@@ -19,7 +19,7 @@ tr:nth-child(even){background-color: #f2f2f2;}
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
-  background-color: #365c2a;
+  background-color: #1771a3;
   color: white;
 }
 `

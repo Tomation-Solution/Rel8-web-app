@@ -35,12 +35,12 @@ export default function Directory(){
                             style={{width:'98%', backgroundColor:'white', boxShadow:'inherit', border:'none' }}
 
                             />
-                            {/* <Button paddingLeft={3} variant='contained' style={{backgroundColor:'#365C2A'}} >
+                            {/* <Button paddingLeft={3} variant='contained' style={{backgroundColor:'#1771a3'}} >
                                 <SearchRounded/>
                             </Button> */}
                         </Grid>
                         <Grid item>
-                            <Button  paddingY={1} variant='contained' style={{backgroundColor:'#365C2A'}} >
+                            <Button  paddingY={1} variant='contained' style={{backgroundColor:'#1771a3'}} >
                                 <SearchRounded/>
                             </Button>
                         </Grid>

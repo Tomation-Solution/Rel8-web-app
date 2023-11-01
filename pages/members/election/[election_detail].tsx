@@ -67,14 +67,14 @@ const ElectionDetail:NextPage = ()=>{
                 <br />
                 <p>{data.member__user__email}</p>
                 <p>Vote Count <strong>{data.amount_vote}</strong></p>
-                                <p>Vote Testimonial <a href={data.youtubeVidLink} style={{'color':'#365c2a'}}> View</a></p>
+                                <p>Vote Testimonial <a href={data.youtubeVidLink} style={{'color':'#1771a3'}}> View</a></p>
                                     <br />
                                 <button
                                 style={{
-        border: ' 1px solid #365c2a',
+        border: ' 1px solid #1771a3',
         display: 'inlineBlock',
         padding: '.5rem 1rem',
-        cursor: 'pointer', color:  '#365c2a',
+        cursor: 'pointer', color:  '#1771a3',
                                 }}
                                 onClick={(e)=>{
                                     if(typeof election_detail == 'string'){

@@ -2,7 +2,7 @@ import { Grid } from "@mui/material"
 import ExcoCard from "../ExcoCard"
 import HeadText from "./DashboardHead"
 // @ts-ignore
-import  ImageCard from "../../images/logo.png"
+import  ImageCard from "../../images/logo.svg"
 
 
 export default function Excos(){
