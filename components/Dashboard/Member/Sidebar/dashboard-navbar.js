@@ -54,15 +54,16 @@ export const DashboardNavbar = (props) => {
           }}
         >
           <IconButton
-            onClick={onSidebarOpen}
             sx={{
               display: {
                 xs: 'inline-flex',
                 lg: 'none'
               }
             }}
+            onClick={onSidebarOpen}
           >
-            <MenuIcon fontSize="small" />
+            <MenuIcon fontSize="small" 
+            />
           </IconButton>
 
 <Box style={{'justifyContent':'space-between','display':'flex','width':'80%','margin':'0 auto','alignItem':'center'}}>
