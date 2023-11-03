@@ -1,7 +1,7 @@
 import { Grid } from "@mui/material"
 import ExcoCard from "../ExcoCard"
 import HeadText from "./DashboardHead"
-import  ImageCard from "../../images/logo.jpeg"
+import  ImageCard from "../../images/logo.png"
 
 
 export default function Excos(){
