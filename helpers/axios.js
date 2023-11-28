@@ -6,8 +6,8 @@ export const tenantName = 'aani'
 // export const sitename = 'localhost:8000'
 // export const baseURL= `http://localhost:8000/tenant/${tenantName}`
 
-export const sitename = 'rel8backend-production-adfb.up.railway.app'
-export const baseURL= `https://rel8backend-production-adfb.up.railway.app/tenant/${tenantName}`
+export const sitename = 'rel8.watchdoglogisticsng.com'
+export const baseURL= `https://rel8.watchdoglogisticsng.com/tenant/${tenantName}`
 const axios = axiosOriginal.create({
     baseURL,
 })
