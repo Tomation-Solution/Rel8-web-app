@@ -195,9 +195,9 @@ route.push('/members/event_detail/')
       <h3>
         {pub.name.slice(0,23)}..
       </h3>
-      <p>
+      {/* <p>
         {pub.paragraphs.length!=0?pub.paragraphs[0].paragragh.slice(0,100):''}..
-      </p>
+      </p> */}
       <a href="#"style={{'color':'#365c2a'}}
         onClick={()=>{
           localStorage.setItem('publication_detail',JSON.stringify(pub))
@@ -235,7 +235,8 @@ style={{
    title={data.name}
    url={data.image}
    content={
-    data.paragraphs.length==0?'....':data.paragraphs[0].paragragh
+    ''
+    // data.paragraphs.length==0?'....':data.paragraphs[0].paragragh
    }
    viewMoreFunc={()=>{
     localStorage.setItem('news',JSON.stringify(data))

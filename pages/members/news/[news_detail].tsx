@@ -56,7 +56,7 @@ export const NewsDetail:NextPage = ()=>{
             <div style={{'padding':'0  1rem','margin':'0 auto','maxWidth':'900px',}}>
                 <h2 style={{'textAlign':'center'}}>{data?.name}</h2>
 <br />
-                {
+                {/* {
                     data?.paragraphs?.map((p,index)=>(
                         <div key={index}>
                             <Grid  style={{'color':'#000000c4'}} >
@@ -67,7 +67,15 @@ export const NewsDetail:NextPage = ()=>{
 
                     ))
                 }
-                
+                 */}
+                {
+                data?.body?
+                <div
+               dangerouslySetInnerHTML={{
+                 __html: `${data.body}`,
+               }}
+             />:''
+                }
             </div>
 
             {/* <ContentReactionContainer>
